@@ -22,10 +22,22 @@ if not input_file:
 
 print(f"Processing file: {input_file}")
 
+from config import (
+    INPUT_BUCKET,
+    OUTPUT_BUCKET,
+    PRODUCT_DICT_BUCKET,
+    PRODUCT_DICT_KEY,
+    TEMP_DOWNLOAD_PATH,
+    PRODUCT_DICT_LOCAL_PATH,
+    PROCESSED_S3_PREFIX,
+    PROCESSED_FILE_NAME_TEMPLATE,
+    DEBUG
+)
+
 # Generate output filename
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 processed_filename = f"processed_report_{timestamp}.csv"
-output_file = f"/tmp/{processed_filename}"
+output_file = os.path.join("/tmp", PROCESSED_FILE_NAME_TEMPLATE.format(timestamp=timestamp))
 
 # S3 client and target bucket
 s3 = boto3.client("s3")
