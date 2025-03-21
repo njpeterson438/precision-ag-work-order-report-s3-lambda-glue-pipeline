@@ -1,0 +1,35 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "S3Access",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    },
+    {
+      "Sid": "GlueStartCrawler",
+      "Effect": "Allow",
+      "Action": [
+        "glue:StartCrawler"
+      ],
+      "Resource": "arn:aws:glue:your-region:your-account-id:crawler/your-crawler-name"
+    },
+    {
+      "Sid": "Logging",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
