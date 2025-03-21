@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://your-image-url.com/banner.png" alt="Precision Ag Work Order Pipeline" width="600"/>
+  <img src="https://your-image-url.com/banner.png" alt="Precision Ag Work Order Pipeline" width="800"/>
 </p>
 
 # precision-ag-work-order-report-s3-lambda-glue-pipeline
