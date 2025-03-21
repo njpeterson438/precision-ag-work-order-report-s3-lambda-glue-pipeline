@@ -1,9 +1,12 @@
 # precision-ag-work-order-report-s3-lambda-glue-pipeline
+
 An AWS pipeline to process precision agriculture work order reports for BI dashboards using automated serverless functions.
 
 This repository contains a simple, modular AWS pipeline that ingests `.xlsx` work order reports uploaded to S3, triggers a Lambda function, and launches an AWS Glue Crawler to update the data catalog for querying in Athena.
 
 Originally developed for agricultural operations, this pipeline is adaptable to any domain that processes tabular field reports into queryable datasets.
+
+---
 
 ## Stack:
 - AWS S3 (trigger on upload)
@@ -14,7 +17,9 @@ Originally developed for agricultural operations, this pipeline is adaptable to 
 This project demonstrates a practical AWS serverless architecture using S3, Lambda, Glue, and Athena.  
 It is not affiliated with Amazon Web Services or any other company.
 
-See the permissions/ folder for example IAM and S3 policies used to enable this pipeline. All resource ARNs should be customized for your AWS environment.
+See the `permissions/` folder for example IAM and S3 policies used to enable this pipeline. All resource ARNs should be customized for your AWS environment.
+
+---
 
 ## Lambda Function: S3 Trigger → Glue Job
 
@@ -40,6 +45,8 @@ This function extracts the uploaded file's S3 path and initiates a predefined AW
 
 See [`lambda_function.py`](lambda_function.py) for the full implementation.
 
+---
+
 ## Sample Event: S3 Trigger Format
 
 The file `event_sample.json` contains a sample payload representing what AWS Lambda receives when an `.xlsx` file is uploaded to the configured S3 bucket.
@@ -57,6 +64,8 @@ You can update these fields with your own values for testing.
 
 > **Note:** This sample assumes an `ObjectCreated:Put` event from S3 and reflects the default schema for S3 event notifications.
 
+---
+
 ## Glue Job Script: work_order_etl.py
 
 This script is triggered by the Lambda function and runs as part of the Glue job. It:
@@ -68,3 +77,44 @@ This script is generalized and includes placeholders for logic like:
 - Product mapping
 - Customer parsing
 - Location/region mapping
+
+See [`glue_processing/work_order_etl.py`](glue_processing/work_order_etl.py) for full details.
+
+---
+
+## Configuration
+
+Environment-specific settings (like S3 bucket names) are defined in `glue_processing/config.py`. Values are read from environment variables with sensible defaults.
+
+You can set these variables in a `.env` file or directly in your Lambda/Glue environment.
+
+Example:
+```env
+INPUT_BUCKET=your-input-bucket
+OUTPUT_BUCKET=your-output-bucket
+PRODUCT_DICT_BUCKET=your-product-lookup-bucket
+PRODUCT_DICT_KEY=product_lookup.csv
+```
+
+---
+
+## Installation
+
+To run the ETL script locally for testing:
+
+```bash
+pip install -r requirements.txt
+python glue_processing/work_order_etl.py --INPUT_FILE s3://your-input-bucket/sample_file.xlsx
+```
+
+---
+
+## Glue Crawler
+
+See [`glue_crawler_config.md`](glue_crawler_config.md) for guidance on setting up your crawler, including schema detection and data catalog integration.
+
+---
+
+## IAM & Permissions
+
+All sample IAM and S3 policies can be found in the `permissions/` directory. These should be adjusted to match your own AWS environment and follow the principle of least privilege.
