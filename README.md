@@ -56,3 +56,15 @@ This is useful for:
 You can update these fields with your own values for testing.
 
 > **Note:** This sample assumes an `ObjectCreated:Put` event from S3 and reflects the default schema for S3 event notifications.
+
+## Glue Job Script: work_order_etl.py
+
+This script is triggered by the Lambda function and runs as part of the Glue job. It:
+- Downloads the Excel file from S3
+- Cleans and processes the data
+- Uploads a normalized `.csv` to S3 for Athena and BI usage
+
+This script is generalized and includes placeholders for logic like:
+- Product mapping
+- Customer parsing
+- Location/region mapping
