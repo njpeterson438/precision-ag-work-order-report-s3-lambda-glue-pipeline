@@ -39,3 +39,9 @@ This function extracts the uploaded file's S3 path and initiates a predefined AW
 - Customize the argument key (`--INPUT_FILE`) if your Glue job uses a different name
 
 See [`lambda_function.py`](lambda_function.py) for the full implementation.
+
+## Sample Event: S3 Trigger Format
+
+The file `event_sample.json` provides an example of the payload structure sent by S3 when a new file is uploaded. This is useful for testing the Lambda function locally or understanding how the pipeline is triggered.
+
+Update the `bucket.name` and `object.key` fields to reflect your specific use case.
