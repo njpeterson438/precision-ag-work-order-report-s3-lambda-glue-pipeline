@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://your-image-url.com/banner.png" alt="Precision Ag Work Order Pipeline" width="600"/>
+</p>
+
 # precision-ag-work-order-report-s3-lambda-glue-pipeline
 
 An AWS pipeline to process precision agriculture work order reports for BI dashboards using automated serverless functions.
