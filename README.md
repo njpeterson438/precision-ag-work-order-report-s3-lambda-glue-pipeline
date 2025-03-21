@@ -42,6 +42,17 @@ See [`lambda_function.py`](lambda_function.py) for the full implementation.
 
 ## Sample Event: S3 Trigger Format
 
-The file `event_sample.json` provides an example of the payload structure sent by S3 when a new file is uploaded. This is useful for testing the Lambda function locally or understanding how the pipeline is triggered.
+The file `event_sample.json` contains a sample payload representing what AWS Lambda receives when an `.xlsx` file is uploaded to the configured S3 bucket.
 
-Update the `bucket.name` and `object.key` fields to reflect your specific use case.
+This is useful for:
+- Testing the Lambda function locally
+- Understanding how the event data is structured
+- Debugging or extending the pipeline
+
+### Key Fields:
+- `"bucket.name"` – The name of the S3 bucket
+- `"object.key"` – The path/key of the uploaded file in the bucket
+
+You can update these fields with your own values for testing.
+
+> **Note:** This sample assumes an `ObjectCreated:Put` event from S3 and reflects the default schema for S3 event notifications.
