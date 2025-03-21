@@ -11,5 +11,7 @@ Originally developed for agricultural operations, this pipeline is adaptable to 
 - AWS Glue Crawler (schema discovery)
 - AWS Athena (auto-refreshes table for BI queries)
 
+See the permissions/ folder for example IAM and S3 policies used to enable this pipeline. All resource ARNs should be customized for your AWS environment.
+
 This project demonstrates a practical AWS serverless architecture using S3, Lambda, Glue, and Athena.  
 It is not affiliated with Amazon Web Services or any other company.
